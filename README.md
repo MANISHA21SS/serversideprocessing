@@ -25,7 +25,7 @@ math.html
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <title>Area of prism</title>
-<meta name='viewport' content='width=device-width, initialscale=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
 <style type="text/css">
 body 
 {
@@ -86,31 +86,38 @@ Area : <input type="text" name="area" value="{{area}}">
 </div>
 </body>
 </html>
-views.py
+views.py:
+
 from django.shortcuts import render
-from django.template import loader
-# Create your views here.
-def prismarea(request):
- context={}
- context['side'] = "0"
- context['s'] = "0"
- context['h'] = "0"
- if request.method == 'POST':
- print("POST method is used")
- s = request.POST.get('side','0')
- h = request.POST.get('height','0')
- print('request=',request)
- print('side=',s)
- print('height=',h)
- area =2*int(s) * int(s)+4*int(s)*int(h)
- context['area'] = area
- context['s'] = s
- context['h'] = h
- print('Area=',area)
- return render(request,'myapp/math.html',context)
- urls.py
- """myproj URL Configuration
-The `urlpatterns` list routes URLs to views. 
+def rectarea(request):
+    context={}
+    context['area'] = "0"
+    context['l'] = "0"
+    context['b'] = "0"
+    if request.method == 'POST':
+        print("POST method is used")
+        l = request.POST.get('length','0')
+        b = request.POST.get('breadth','0')
+        print('request=',request)
+        print('Length=',l)
+        print('Breadth=',b)
+        area = int(l) * int(b)
+        context['area'] = area
+        context['l'] = l
+        context['b'] = b
+        print('Area=',area)
+    return render(request,'myapp/math.html',context)
+
+urls.py:
+
+from django.contrib import admin
+from django.urls import path
+from myapp import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('areaofrectangle/',views.rectarea,name="areaofrectangle"),
+    path('',views.rectarea,name="areaofrectangleroot")
+]
 ~~~
 ## OUTPUT:
 ![Screenshot (71)](https://github.com/MANISHA21SS/serversideprocessing/assets/147474298/231bfccd-139c-4563-a82f-e9c176758f10)
