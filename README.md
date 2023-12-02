@@ -18,6 +18,7 @@ create a HTML file of forms.
 ### Step 6:
 Publish the website in the given URL.
 ## PROGRAM
+~~~
 math.html
 <html>
 <head>
@@ -110,7 +111,7 @@ def prismarea(request):
  urls.py
  """myproj URL Configuration
 The `urlpatterns` list routes URLs to views. 
-
+~~~
 ## OUTPUT:
 ![Screenshot (71)](https://github.com/MANISHA21SS/serversideprocessing/assets/147474298/231bfccd-139c-4563-a82f-e9c176758f10)
 
